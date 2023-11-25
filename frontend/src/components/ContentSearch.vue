@@ -6,17 +6,19 @@
     <el-tab-pane label="歌单" name="second">
       <CSSongList></CSSongList>
     </el-tab-pane>
-    <el-tab-pane label="歌词" name="third">开发中...</el-tab-pane>
+    <el-tab-pane label="歌词" name="third">
+      <ContentLyric></ContentLyric>
+    </el-tab-pane>
     <el-tab-pane label="MV" name="fourth">开发中...</el-tab-pane>
   </el-tabs>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import ContentLyric from './ContentLyric.vue'
 import type { TabsPaneContext } from 'element-plus'
 import CSMusicList from './CSMusicList.vue'
 import CSSongList from './CSSongList.vue'
 import { player } from './store.js'
-import { setMusicList,setSongList } from './utils'
+import { setMusicList, setSongList } from './utils'
 
 // const activeName = ref('first')
 
@@ -30,7 +32,7 @@ const handleClick = async (tab: TabsPaneContext, event: Event) => {
   if (tab.index == '0') {
     // 单曲搜索,不能切
     // setMusicList();
-  }else if (tab.index == '1') {
+  } else if (tab.index == '1') {
     // 歌单搜索
     setSongList();
   }
