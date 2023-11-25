@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;">
     <el-table :data="player.musicList" @row-click="handleRowClick" :row-class-name="rowClassName"
-      empty-text="搜索总...">
+      empty-text="搜索中...">
       <el-table-column type="index" label="#" />
       <!-- <el-table-column prop="id" label="ID" /> -->
       <el-table-column prop="name" label="标题" />
