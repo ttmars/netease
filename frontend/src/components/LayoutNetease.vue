@@ -5,6 +5,8 @@ import Player from './Player.vue'
 import { onMounted } from 'vue'
 import { currentTab } from './store.js'
 import ContentSearch from './ContentSearch.vue'
+import ContentLyric from './ContentLyric.vue'
+import { player } from './store.js'
 
 onMounted(() => {
     currentTab.value = ContentSearch;         // 页面加载显示指定内容
@@ -38,6 +40,12 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
+
+            <div v-if="player.showLyric" style="height: 30px; width: 100%;">
+                <!-- 歌词展示 -->
+                <ContentLyric></ContentLyric>
+            </div>
+
             <div style="height: 100px; width: 100%;">
                 <!-- 底部播放器 -->
                 <Player />

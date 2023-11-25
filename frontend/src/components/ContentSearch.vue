@@ -6,9 +6,7 @@
     <el-tab-pane label="歌单" name="second">
       <CSSongList></CSSongList>
     </el-tab-pane>
-    <el-tab-pane label="歌词" name="third">
-      <ContentLyric></ContentLyric>
-    </el-tab-pane>
+    <el-tab-pane label="歌词" name="third">开发中...</el-tab-pane>
     <el-tab-pane label="MV" name="fourth">开发中...</el-tab-pane>
   </el-tabs>
 </template>

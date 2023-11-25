@@ -64,7 +64,7 @@
                             <img src="../assets/下一曲.svg" alt="" width="13" height="13">
                         </template>
                     </el-button>
-                    <el-button circle style="border: none;"><b>词</b></el-button>
+                    <el-button circle style="border: none;" @click="player.showLyric = !player.showLyric"><b>词</b></el-button>
                 </div>
 
                 <!-- 下 -->
