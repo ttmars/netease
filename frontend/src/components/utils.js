@@ -1,15 +1,16 @@
-import { player,currentTab,audio } from "./store.js";
+import { player, currentTab, audio } from "./store.js";
 import ContentSearch from "./ContentSearch.vue"
-import { getPicUrl,search,getPlaylist } from './request.js'
+import { getPicUrl, search, getPlaylist,getSong } from './request.js'
+import { ElNotification } from 'element-plus'
 
 // 设置歌曲图片
 export const setPicUrl = async () => {
-    const resp = await getPicUrl({ids:player.value.musicList[player.value.index].id});
+    const resp = await getPicUrl({ ids: player.value.musicList[player.value.index].id });
     player.value.picUrl = resp.data.songs[0].al.picUrl;
 }
 
 // 单曲搜索
-export const setMusicList = async() => {
+export const setMusicList = async () => {
     player.value.musicList = [];
 
     player.value.submiting = true;
@@ -19,16 +20,16 @@ export const setMusicList = async() => {
 
     // 格式化时间
     player.value.musicList.forEach(item => {
-      const totalSeconds = Math.floor(item.duration / 1000);
-      const minutes = Math.floor(totalSeconds / 60);
-      const seconds = totalSeconds % 60;
-      item.duration = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        const totalSeconds = Math.floor(item.duration / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        item.duration = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     });
     currentTab.value = ContentSearch;
 }
 
 // 歌单搜索
-export const setSongList = async() => {
+export const setSongList = async () => {
     player.value.songList = [];
 
     player.value.submiting = true;
@@ -39,7 +40,7 @@ export const setSongList = async() => {
     player.value.songList.forEach(item => {
         item.playCount = formatNumber(item.playCount);
         item.bookCount = formatNumber(item.bookCount);
-      });
+    });
 
     currentTab.value = ContentSearch;
 }
@@ -55,7 +56,7 @@ function formatNumber(a) {
 }
 
 // 播放一个歌单
-export const playSonglist = async() => {
+export const playSonglist = async () => {
     player.value.submiting = true;
     const resp = await getPlaylist({ id: player.value.songList[player.value.songIndex].id })
     player.value.submiting = false;
@@ -73,14 +74,32 @@ export const playSonglist = async() => {
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
         item.duration = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-      });
+    });
 }
 
 // 播放
-export function play() {
-    audio.src = player.value.url;
-    audio.load();
-    audio.play();
-    player.value.isPlaying = true;
-    setPicUrl();
-  }
+export async function play() {
+    if (player.value.url == null) {
+        ElNotification({
+            title: '暂无音源',
+            message: player.value.musicList[player.value.index].name,
+            type: 'error',
+            showClose: false,
+            duration: 3000,
+        })
+        // 下一曲
+        player.value.index++;
+        if (player.value.index == player.value.musicList.length) {
+            player.value.index = 0;
+        }
+        const resp = await getSong({ id: player.value.musicList[player.value.index].id })
+        player.value.url = resp.data.data[0].url;
+        play();
+    } else {
+        audio.src = player.value.url;
+        audio.load();
+        audio.play();
+        player.value.isPlaying = true;
+        setPicUrl();
+    }
+}
