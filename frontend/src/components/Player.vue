@@ -95,7 +95,7 @@ import { ref } from 'vue'
 import { audio, currentTab, player } from './store.js'
 import ContentSearch from './ContentSearch.vue'
 import { getSong } from './request.js'
-import { setPicUrl } from './utils';
+import { play } from './utils.js'
 
 // 格式化
 const musicDuration = ref('00:00');
@@ -141,7 +141,6 @@ audio.onended = async function () {
     const resp = await getSong({ id: player.value.musicList[player.value.index].id })
     player.value.currentMusicUrl = resp.data.data[0].url;
     play();
-    setPicUrl();
 };
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -211,7 +210,6 @@ const nextClick = async () => {
         // 异常处理
         console.error(error);
     }
-    setPicUrl();
 }
 
 // 上一曲
@@ -228,14 +226,6 @@ const preClick = async () => {
         // 异常处理
         console.error(error);
     }
-    setPicUrl();
-}
-
-function play() {
-    audio.src = player.value.currentMusicUrl;
-    audio.load();
-    audio.play();
-    player.value.isPlaying = true;
 }
 </script>
 

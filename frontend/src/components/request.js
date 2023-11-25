@@ -40,3 +40,12 @@ export const getPicUrl = (params) => {
         params
     })
 }
+
+// 获取歌单所有歌曲
+export const getPlaylist = (params) => {
+    return service({
+        url: '/playlist/track/all',
+        method: 'get',
+        params
+    })
+}

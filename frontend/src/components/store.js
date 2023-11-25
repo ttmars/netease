@@ -44,6 +44,7 @@ export const audio = new Audio();
 
 // 播放信息
 export const player = ref({
+  "songIndex":-1,       // 歌单索引
   "songList": [],       // 歌单列表
   "musicList": [],      // 播放列表
   "url": '',            // 播放url

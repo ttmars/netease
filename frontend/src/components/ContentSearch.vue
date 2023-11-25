@@ -29,7 +29,7 @@ const handleClick = async (tab: TabsPaneContext, event: Event) => {
 
   if (tab.index == '0') {
     // 单曲搜索
-    setMusicList();
+    // setMusicList();
   }else if (tab.index == '1') {
     // 歌单搜索
     setSongList();
