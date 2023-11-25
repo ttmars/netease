@@ -1,5 +1,5 @@
 <template>
-  <el-tabs style="margin-left: 30px;" v-model="activeName" @tab-click="handleClick">
+  <el-tabs v-model="player.activeTab" style="margin-left: 30px;" @tab-click="handleClick">
     <el-tab-pane label="单曲" name="first">
       <CSMusicList></CSMusicList>
     </el-tab-pane>
@@ -18,7 +18,7 @@ import CSSongList from './CSSongList.vue'
 import { player } from './store.js'
 import { setMusicList,setSongList } from './utils'
 
-const activeName = ref('first')
+// const activeName = ref('first')
 
 const handleClick = async (tab: TabsPaneContext, event: Event) => {
   player.value.searchType = tab.index;

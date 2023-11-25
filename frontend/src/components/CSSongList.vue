@@ -5,8 +5,8 @@
       <el-table-column prop="name" label="标题" />
       <el-table-column prop="trackCount" label="歌曲数" />
       <el-table-column prop="creator.nickname" label="创建者" />
-      <el-table-column prop="playCount" label="播放量" />
-      <el-table-column prop="bookCount" label="订阅量" />
+      <el-table-column prop="playCount" label="播放" />
+      <el-table-column prop="bookCount" label="收藏" />
     </el-table>
   </div>
 </template>
@@ -20,6 +20,9 @@ const handleRowClick = async (row, column, event) => {
   // 获取歌单
   player.value.songIndex = player.value.songList.indexOf(row);
   await playSonglist();
+
+  // 切换到歌单标签页
+  player.value.activeTab = 'first';
 
   // 自动播放第一曲
   const resp = await getSong({ id: player.value.musicList[0].id })

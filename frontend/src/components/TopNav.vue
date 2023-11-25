@@ -42,6 +42,8 @@ const submit = async () => {
   player.value.searchValue = input.value;
   input.value = '';
 
+  player.value.index = -1;
+  player.value.songIndex = -1;
   if (player.value.searchType == '0') {
     setMusicList();
   }else if (player.value.searchType == '1'){

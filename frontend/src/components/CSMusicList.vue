@@ -3,7 +3,6 @@
     <el-table :data="player.musicList" @row-click="handleRowClick" :row-class-name="rowClassName"
       empty-text="搜索中...">
       <el-table-column type="index" label="#" />
-      <!-- <el-table-column prop="id" label="ID" /> -->
       <el-table-column prop="name" label="标题" />
       <el-table-column prop="artists[0].name" label="歌手" />   //ar
       <el-table-column prop="album.name" label="专辑" />    // al

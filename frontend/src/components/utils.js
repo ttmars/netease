@@ -10,7 +10,7 @@ export const setPicUrl = async () => {
 
 // 单曲搜索
 export const setMusicList = async() => {
-    player.value.index = -1;
+    // player.value.index = -1;
     player.value.musicList = [];
 
     player.value.submiting = true;
@@ -30,7 +30,7 @@ export const setMusicList = async() => {
 
 // 歌单搜索
 export const setSongList = async() => {
-    player.value.songIndex = -1;
+    // player.value.songIndex = -1;
     player.value.songList = [];
 
     player.value.submiting = true;

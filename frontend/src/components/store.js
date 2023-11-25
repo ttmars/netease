@@ -44,6 +44,7 @@ export const audio = new Audio();
 
 // 播放信息
 export const player = ref({
+  "activeTab":'first',  // 当前标签页
   "songIndex":-1,       // 歌单索引
   "songList": [],       // 歌单列表
   "musicList": [],      // 播放列表
