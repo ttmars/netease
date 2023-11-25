@@ -3,10 +3,11 @@ import TopNav from './TopNav.vue'
 import LeftNav from './LeftNav.vue'
 import Player from './Player.vue'
 import { onMounted } from 'vue'
-import { bottomTabs, currentTab } from './store.js'
+import { currentTab } from './store.js'
+import ContentSearch from './ContentSearch.vue'
 
 onMounted(() => {
-    currentTab.value = bottomTabs.value[0].cpn;         // 页面加载显示指定内容
+    currentTab.value = ContentSearch;         // 页面加载显示指定内容
 })
 
 </script>
@@ -31,7 +32,9 @@ onMounted(() => {
                     </div>
                     <div style="overflow: auto; height: 100%;">
                         <!-- 内容 -->
-                        <component :is="currentTab"></component>
+                        <KeepAlive>
+                            <component :is="currentTab"></component>
+                        </KeepAlive>
                     </div>
                 </div>
             </div>

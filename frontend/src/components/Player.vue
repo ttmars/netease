@@ -9,7 +9,7 @@
         <div style="display: flex; flex: 1;">
             <div style="display: flex;">
                 <div style="display: flex; justify-content: center; align-items: center; margin: 15px;">
-                    <el-button circle size="large" class="bt-none">
+                    <el-button circle size="large" class="bt-none" @click="picClick">
                         <template #icon>
                             <img v-if="player.picUrl != ''" :src="player.picUrl" alt="" width="50" height="50">
                             <img v-else src="../assets/光碟.svg" alt="" width="50" height="50">
@@ -108,6 +108,10 @@ const changeMode = () => {
     if (player.value.mode == 4) {
         player.value.mode = 1;
     }
+}
+
+const picClick = () => {
+    currentTab.value = ContentSearch;
 }
 
 // 监听音频事件
