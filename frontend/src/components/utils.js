@@ -1,7 +1,33 @@
 import { player, currentTab, audio } from "./store.js";
 import ContentSearch from "./ContentSearch.vue"
-import { getPicUrl, search, getPlaylist,getSong } from './request.js'
+import { getPicUrl, search, getPlaylist, getSong, getLyric } from './request.js'
 import { ElNotification } from 'element-plus'
+
+// 设置歌词
+export const setLyric = async () => {
+    const resp = await getLyric({ id: player.value.musicList[player.value.index].id });
+    player.value.lyric = resp.data.lrc.lyric;
+    player.value.lyric = formatLrc(player.value.lyric);
+}
+function formatLrc(LRC) {
+    var strLrc = LRC.split("\n");
+    let arr = [];
+    for (var i = 0; i < strLrc.length; i++) {
+        var str = strLrc[i];
+        var parts = str.split("]");
+        var timeStr = parts[0].substring(1);
+        var obj = {
+            time: formatTime(timeStr),
+            words: parts[1],
+        };
+        arr.push(obj);
+    }
+    return arr;
+}
+function formatTime(time) {
+    var parts = time.split(":"); //[03:00.000]==>[03,00.00]
+    return +parts[0] * 60 + +parts[1]; //计算秒
+  }
 
 // 设置歌曲图片
 export const setPicUrl = async () => {
@@ -101,5 +127,6 @@ export async function play() {
         audio.play();
         player.value.isPlaying = true;
         setPicUrl();
+        setLyric();
     }
 }

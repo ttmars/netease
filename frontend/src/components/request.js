@@ -49,3 +49,12 @@ export const getPlaylist = (params) => {
         params
     })
 }
+
+// 获取歌词
+export const getLyric = (params) => {
+    return service({
+        url: '/lyric',
+        method: 'get',
+        params
+    })
+}
