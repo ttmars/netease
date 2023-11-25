@@ -20,7 +20,7 @@ const handleRowClick = async (row, column, event) => {
   try {
     player.value.index = player.value.musicList.indexOf(row);
     const resp = await getSong({ id: player.value.musicList[player.value.index].id })
-    player.value.currentMusicUrl = resp.data.data[0].url;
+    player.value.url = resp.data.data[0].url;
     play();
   } catch (error) {
     // 异常处理

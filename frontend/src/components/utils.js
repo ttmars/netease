@@ -80,7 +80,7 @@ export const playSonglist = async() => {
 
 // 播放
 export function play() {
-    audio.src = player.value.currentMusicUrl;
+    audio.src = player.value.url;
     audio.load();
     audio.play();
     player.value.isPlaying = true;

@@ -26,7 +26,7 @@ const handleRowClick = async (row, column, event) => {
 
   // 自动播放第一曲
   const resp = await getSong({ id: player.value.musicList[0].id })
-  player.value.currentMusicUrl = resp.data.data[0].url;
+  player.value.url = resp.data.data[0].url;
   player.value.index = 0;
   play();
 }

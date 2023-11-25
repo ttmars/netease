@@ -20,13 +20,16 @@
                     <div style="margin-top: 10px; margin-bottom: 10px;"> {{ player.index != -1 && player.index <
                         player.musicList.length ? player.musicList[player.index].name : "天天网抑云" }} </div>
                             <div style="display: flex;">
-                                <el-button circle style="border: none;">
+                                <el-button circle style="border: none;" @click="changeLoveStatus">
                                     <template #icon>
-                                        <img src="../assets/红心.svg" alt="" width="13" height="13">
+                                        <img v-if="loveStatus" src="../assets/红心.svg" alt="" width="13" height="13">
+                                        <img v-else src="../assets/黑心.svg" alt="" width="13" height="13">
                                     </template>
                                 </el-button>
-                                <el-button circle style="border: none;" icon="ChatDotRound"></el-button>
-                                <el-button circle style="border: none;" icon="Download"></el-button>
+                                <!-- <el-button circle style="border: none;" icon="ChatDotRound"></el-button> -->
+
+                                <el-button circle style="border: none;" icon="CopyDocument" @click="copyClick"></el-button>
+                                <el-button circle style="border: none;" icon="Download" @click="downloadClick"></el-button>
                                 <el-button circle style="border: none;" icon="MoreFilled"></el-button>
                             </div>
                     </div>
@@ -96,12 +99,58 @@ import { audio, currentTab, player } from './store.js'
 import ContentSearch from './ContentSearch.vue'
 import { getSong } from './request.js'
 import { play } from './utils.js'
+import { ElNotification } from 'element-plus'
 
 // 格式化
 const musicDuration = ref('00:00');
 const currentDuration = ref('00:00');
 const musicDurationNumber = ref(0);
 const currentDurationNumber = ref(0);
+const loveStatus = ref(false);
+
+const changeLoveStatus = () => {
+    loveStatus.value = !loveStatus.value;
+}
+
+// 复制播放链接
+const copyClick = () => {
+    navigator.clipboard.writeText(player.value.url);
+    ElNotification({
+        title: 'Success',
+        message: '已复制链接',
+        type: 'success',
+        showClose: false,
+        duration:1000,
+    })
+}
+
+// 下载文件
+const downloadClick = () => {
+    // window.open(player.value.url);
+    ElNotification({
+        title: 'Success',
+        message: '已开始下载',
+        type: 'success',
+        showClose: false,
+        duration:1000,
+    })
+    if (player.value.index != -1 && player.value.index < player.value.musicList.length) {
+        downloadMp3(player.value.url, player.value.musicList[player.value.index].name);
+    }
+}
+function downloadMp3(filePath, fileName) {
+    fetch(filePath).then(res => res.blob()).then(blob => {
+        const a = document.createElement('a');
+        document.body.appendChild(a)
+        a.style.display = 'none'
+        const url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        document.body.removeChild(a)
+        window.URL.revokeObjectURL(url);
+    });
+}
 
 const changeMode = () => {
     player.value.mode++;
@@ -139,7 +188,7 @@ audio.onended = async function () {
     }
 
     const resp = await getSong({ id: player.value.musicList[player.value.index].id })
-    player.value.currentMusicUrl = resp.data.data[0].url;
+    player.value.url = resp.data.data[0].url;
     play();
 };
 function getRandomInt(min, max) {
@@ -204,7 +253,7 @@ const nextClick = async () => {
             player.value.index = 0;
         }
         const resp = await getSong({ id: player.value.musicList[player.value.index].id })
-        player.value.currentMusicUrl = resp.data.data[0].url;
+        player.value.url = resp.data.data[0].url;
         play();
     } catch (error) {
         // 异常处理
@@ -220,7 +269,7 @@ const preClick = async () => {
             player.value.index = player.value.musicList.length - 1;
         }
         const resp = await getSong({ id: player.value.musicList[player.value.index].id })
-        player.value.currentMusicUrl = resp.data.data[0].url;
+        player.value.url = resp.data.data[0].url;
         play();
     } catch (error) {
         // 异常处理
