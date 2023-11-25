@@ -3,9 +3,15 @@ import axios from 'axios';
 // https://apifox.com/apiskills/axios-request-encapsulation/
 // https://github.com/axios/axios
 
+// 跨域？
+// https://blog.csdn.net/moshowgame/article/details/107285660
+// https://juejin.cn/post/7070425184796147719
+// https://zhuanlan.zhihu.com/p/615153283
+axios.defaults.crossDomain = true
+
 const service = axios.create({
     baseURL: 'http://39.101.203.25:3000',
-    timeout: 5000
+    timeout: 10000
 })
 
 // 搜索

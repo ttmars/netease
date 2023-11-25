@@ -15,16 +15,24 @@ import { ref } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 import CSMusicList from './CSMusicList.vue'
 import CSSongList from './CSSongList.vue'
-import { search } from './request.js'
 import { player } from './store.js'
+import { setMusicList,setSongList } from './utils'
 
 const activeName = ref('first')
 
 const handleClick = async (tab: TabsPaneContext, event: Event) => {
-  // 搜索歌单
-  if (tab.index == '1' && player.value.searchValue != '') {
-    const resp = await search({ keywords: player.value.searchValue, type: 1000 })
-    player.value.songList = resp.data.result.playlists;
+  player.value.searchType = tab.index;
+
+  if (player.value.searchValue == '') {
+    return;
+  }
+
+  if (tab.index == '0') {
+    // 单曲搜索
+    setMusicList();
+  }else if (tab.index == '1') {
+    // 歌单搜索
+    setSongList();
   }
 }
 </script>

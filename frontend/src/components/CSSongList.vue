@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%;">
-    <el-table :data="player.songList" @row-click="handleRowClick" empty-text="歌 单 列 表 空 空 如 也">
+    <el-table :data="player.songList" @row-click="handleRowClick" empty-text="搜索总...">
       <el-table-column type="index" label="#" />
       <el-table-column prop="name" label="标题" />
       <el-table-column prop="trackCount" label="歌曲数" />
