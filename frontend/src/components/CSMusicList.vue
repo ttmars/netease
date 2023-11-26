@@ -1,11 +1,11 @@
 <template>
   <div style="width: 100%;">
-    <el-table :data="player.musicList" @row-click="handleRowClick" :row-class-name="rowClassName" empty-text="搜索中...">
-      <el-table-column type="index" label="#" />
+    <el-table :data="player.musicList" @row-click="handleRowClick" :row-class-name="rowClassName" empty-text="获取中..." show-overflow-tooltip>
+      <el-table-column type="index" label="#" width="50" />
       <el-table-column prop="name" label="标题" />
-      <el-table-column prop="artists[0].name" label="歌手" /> //ar
-      <el-table-column prop="album.name" label="专辑" /> // al
-      <el-table-column prop="duration" label="时长" /> // dt
+      <el-table-column prop="artists[0].name" label="歌手" /> 
+      <el-table-column prop="album.name" label="专辑" /> 
+      <el-table-column prop="duration" label="时长" width="100" />
     </el-table>
   </div>
 </template>

@@ -44,13 +44,16 @@ export const audio = new Audio();
 
 // 播放信息
 export const player = ref({
-  "showLyric": true,    // 是否显示歌词
+  "showLyric": false,   // 是否显示歌词
   "lyric": '',          // 当前歌词
-  "activeTab":'first',  // 当前标签页
-  "songIndex":-1,       // 歌单索引
+  "activeTab": 'first',  // 当前标签页
+  "songIndex": -1,       // 歌单索引
+  "mvIndex": -1,       // mv索引
   "songList": [],       // 歌单列表
   "musicList": [],      // 播放列表
+  "mvList": [],         // MV列表
   "url": '',            // 播放url
+  "mvUrl": '',            // mv播放url
   "index": -1,          // 播放索引
   "isPlaying": false,   // 播放状态
   "submiting": false,   // 搜索状态

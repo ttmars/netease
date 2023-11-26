@@ -1,6 +1,6 @@
 <!-- https://blog.csdn.net/2303_76218115/article/details/129657440 -->
 <template>
-  <div style="display: flex; width: 100%; height: 100%; align-items: center; margin-left: 10px;">
+  <div style="display: flex; width: 50%; height: 100%; align-items: center; justify-content: center;">
     <div :class="className" :style="{ 'animation-duration': `${lrcTime}000ms` }">
       {{ dataWords }}
     </div>

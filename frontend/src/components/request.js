@@ -58,3 +58,12 @@ export const getLyric = (params) => {
         params
     })
 }
+
+// 获取mv播放链接
+export const getMVLink = (params) => {
+    return service({
+        url: '/mv/url',
+        method: 'get',
+        params
+    })
+}

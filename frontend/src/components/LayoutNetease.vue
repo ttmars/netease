@@ -41,7 +41,7 @@ onMounted(() => {
                 </div>
             </div>
 
-            <div v-if="player.showLyric" style="height: 30px; width: 100%;">
+            <div v-if="player.showLyric" style="height: 30px; width: 100%; display: flex; flex-direction: row-reverse;">
                 <!-- 歌词展示 -->
                 <ContentLyric></ContentLyric>
             </div>

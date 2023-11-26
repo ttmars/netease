@@ -27,7 +27,7 @@
 <script setup>
 import { ref } from 'vue'
 import { player } from './store.js'
-import { setMusicList, setSongList } from './utils.js'
+import { setMusicList, setSongList, setMVList } from './utils.js'
 
 // 搜索值
 const input = ref('')
@@ -35,7 +35,7 @@ const input = ref('')
 const submit = async () => {
   if (input.value == '' && player.value.searchValue == '') {
     return;
-  }else if (input.value == '' && player.value.searchValue != ''){
+  } else if (input.value == '' && player.value.searchValue != '') {
     input.value = player.value.searchValue;
   }
 
@@ -46,8 +46,10 @@ const submit = async () => {
   player.value.songIndex = -1;
   if (player.value.searchType == '0') {
     setMusicList();
-  }else if (player.value.searchType == '1'){
+  } else if (player.value.searchType == '1') {
     setSongList();
+  } else if (player.value.searchType == '2') {
+    setMVList();
   }
 }
 

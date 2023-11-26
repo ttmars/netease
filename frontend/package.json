@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "@videojs-player/vue": "^1.0.0",
     "alova": "^2.13.2",
     "axios": "^1.6.2",
     "element-plus": "^2.4.2",
+    "video.js": "^8.6.1",
     "vue": "^3.3.8"
   },
   "devDependencies": {

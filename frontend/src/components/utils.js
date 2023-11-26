@@ -1,6 +1,6 @@
 import { player, currentTab, audio } from "./store.js";
 import ContentSearch from "./ContentSearch.vue"
-import { getPicUrl, search, getPlaylist, getSong, getLyric } from './request.js'
+import { getPicUrl, search, getPlaylist, getSong, getLyric,getMVLink } from './request.js'
 import { ElNotification } from 'element-plus'
 
 // 设置歌词
@@ -67,6 +67,28 @@ export const setSongList = async () => {
         item.playCount = formatNumber(item.playCount);
         item.bookCount = formatNumber(item.bookCount);
     });
+
+    currentTab.value = ContentSearch;
+}
+
+// MV搜索
+export const setMVList = async () => {
+    player.value.mvList = [];
+
+    player.value.submiting = true;
+    const resp = await search({ keywords: player.value.searchValue, type: 1004 })
+    player.value.submiting = false;
+    player.value.mvList = resp.data.result.mvs;
+
+    currentTab.value = ContentSearch;
+}
+
+// 获取MV播放链接
+export const setMVUrl = async () => {
+    player.value.submiting = true;
+    const resp = await getMVLink({ id: player.value.mvList[player.value.mvIndex].id })
+    player.value.submiting = false;
+    player.value.mvUrl = resp.data.data.url;
 
     currentTab.value = ContentSearch;
 }
