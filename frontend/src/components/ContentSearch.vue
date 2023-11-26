@@ -17,9 +17,12 @@ import type { TabsPaneContext } from 'element-plus'
 import CSMusicList from './CSMusicList.vue'
 import CSSongList from './CSSongList.vue'
 import { player } from './store.js'
-import { setMusicList, setSongList,setMVList } from './utils'
+import { setMusicList, setSongList, setMVList } from './utils'
+import { onMounted } from 'vue'
 
-// const activeName = ref('first')
+onMounted(() => {
+  setMusicList();
+})
 
 const handleClick = async (tab: TabsPaneContext, event: Event) => {
   player.value.searchType = tab.index;
@@ -34,7 +37,7 @@ const handleClick = async (tab: TabsPaneContext, event: Event) => {
   } else if (tab.index == '1') {
     // 歌单搜索
     setSongList();
-  } else if (tab.index == '2')  {
+  } else if (tab.index == '2') {
     setMVList();
   }
 }
