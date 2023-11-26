@@ -1,10 +1,11 @@
 <template>
     <div style="display: flex; flex-wrap: wrap;">
-        <video-player class="video" :src="player.mvUrl" :poster="player.mvIndex != -1 && player.mvIndex < player.mvList.length ? player.mvList[player.mvIndex].cover : ''" controls :loop="true" :volume="1" autoplay />
+        <video-player class="video" :src="player.mvUrl" :loop="true" :volume="1" controls autoplay
+            :poster="player.mvIndex != -1 && player.mvIndex < player.mvList.length ? player.mvList[player.mvIndex].cover : ''" />
 
-        <div v-for="(item,idx) in player.mvList">
+        <div v-for="(item, idx) in player.mvList">
             <div class="mv">
-                <img  style="cursor: pointer;" :src="item.cover" @click="playMv(idx)">
+                <img style="cursor: pointer;" :src="item.cover" @click="playMv(idx)">
                 <el-text> {{ item.name }} {{ item.id }} </el-text>
             </div>
         </div>
@@ -27,11 +28,10 @@ const pic = 'http://p1.music.126.net/SImS27Q9yyTGkFfomUpFEg==/3276544658812698.j
 </script>
 
 <style>
-
-.video{
+.video {
+    width: 290px;
+    height: 160px;
     margin: 10px;
-    width: 100%;
-    height: 400px;
 }
 
 .mv {
