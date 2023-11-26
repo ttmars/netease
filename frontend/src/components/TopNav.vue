@@ -10,6 +10,10 @@
         <!-- <el-button @click="submitDebug" style="margin-right: 60px;" :loading="submiting">debug</el-button> -->
       </div>
 
+      <div v-if="player.showLyric" style="width: 100%; display: flex; justify-content: center; align-items: center;">
+        <ContentLyric></ContentLyric>
+      </div>
+
       <div style="display: flex; flex: 1; justify-content: end; align-items: center;">
         <el-button style="border: none;" circle icon="Tools" />
         <el-button style="border: none;" circle icon="Message" />
@@ -28,6 +32,7 @@
 import { ref } from 'vue'
 import { player } from './store.js'
 import { setMusicList, setSongList, setMVList } from './utils.js'
+import ContentLyric from './ContentLyric.vue'
 
 // 搜索值
 const input = ref('')

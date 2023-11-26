@@ -18,11 +18,6 @@ import CSMusicList from './CSMusicList.vue'
 import CSSongList from './CSSongList.vue'
 import { player } from './store.js'
 import { setMusicList, setSongList, setMVList } from './utils'
-import { onMounted } from 'vue'
-
-onMounted(() => {
-  setMusicList();
-})
 
 const handleClick = async (tab: TabsPaneContext, event: Event) => {
   player.value.searchType = tab.index;
