@@ -8,7 +8,7 @@
 </template>
  
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import { audio, player } from './store';
 
 const className = ref("text load");

@@ -24,7 +24,6 @@ const playMv = async (idx) => {
     // 播放mv
 }
 
-const pic = 'http://p1.music.126.net/SImS27Q9yyTGkFfomUpFEg==/3276544658812698.jpg'
 </script>
 
 <style>

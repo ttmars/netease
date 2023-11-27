@@ -20,6 +20,7 @@ const handleRowClick = async (row, column, event) => {
   // 切换到歌单标签页
   player.value.musicList = [];
   player.value.activeTab = 'first';
+  player.value.searchType = '0';
 
   // 获取歌单
   player.value.songIndex = player.value.songList.indexOf(row);
