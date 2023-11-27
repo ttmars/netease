@@ -9,11 +9,5 @@
   "author": {
     "name": "liwen",
     "email": "liwen@gzntkj.com"
-  },
-  "pack": {
-    "include": [
-      "./frontend/src/assets/播放.svg",
-      "./frontend/src/assets/暂停.svg"
-    ]
   }
 }
