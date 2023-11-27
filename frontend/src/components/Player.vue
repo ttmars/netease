@@ -17,7 +17,7 @@
                     </el-button>
                 </div>
                 <div style="display: flex; flex-direction: column;">
-                    <div style="margin-top: 10px; margin-bottom: 10px;"> {{ player.index != -1 && player.index <
+                    <div style="margin-top: 10px; margin-bottom: 10px; width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> {{ player.index != -1 && player.index <
                         player.musicList.length ? player.musicList[player.index].name : "天天网抑云" }} </div>
                             <div style="display: flex;">
                                 <el-button circle style="border: none;" @click="changeLoveStatus">
