@@ -150,5 +150,6 @@ export async function play() {
         player.value.isPlaying = true;
         setPicUrl();
         setLyric();
+        audio.playbackRate = player.value.speed;
     }
 }
