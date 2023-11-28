@@ -84,11 +84,11 @@
                 <!-- <el-button size="large" style="border: none;" circle icon="Expand" @click="showList" /> -->
             
                 <!-- 播放速度 -->
-                <el-popover placement="top" :width="200" trigger="hover" hide-after="0">
+                <el-popover placement="top" :width="200" trigger="hover" :hide-after="0">
                     <template #reference>
                         <el-button size="large" style="border: none;" circle @click="showList" text>x{{ player.speed }}</el-button>
                     </template>
-                    <el-slider v-model="player.speed" :min="0" :max="2" step="0.1" @input="speedHandle" size="small"/>
+                    <el-slider v-model="player.speed" :min="0" :max="2" :step="0.1" @input="speedHandle" size="small"/>
                 </el-popover>
 
                 <el-button size="large" circle style="border: none;" @click="switchMute">
