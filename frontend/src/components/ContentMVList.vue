@@ -1,6 +1,6 @@
 <template>
     <div style="display: flex; flex-wrap: wrap;">
-        <video-player class="video" :src="player.mvUrl" :loop="true" :volume="1" controls autoplay
+        <video-player class="video" @playing="playingHandle" :src="player.mvUrl" :loop="false" :volume="1" controls autoplay
             :poster="player.mvIndex != -1 && player.mvIndex < player.mvList.length ? player.mvList[player.mvIndex].cover : ''" />
 
         <div v-for="(item, idx) in player.mvList">
@@ -17,11 +17,17 @@ import { player } from './store.js'
 import { setMVUrl } from './utils.js'
 import { VideoPlayer } from '@videojs-player/vue'
 import 'video.js/dist/video-js.css'
+import { audio } from './store.js'
 
 const playMv = async (idx) => {
     player.value.mvIndex = idx;
     await setMVUrl();
     // 播放mv
+}
+
+const playingHandle = () => {
+    audio.pause();
+    player.value.isPlaying = false;
 }
 
 </script>
