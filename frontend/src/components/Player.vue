@@ -84,11 +84,11 @@
                 <!-- <el-button size="large" style="border: none;" circle icon="Expand" @click="showList" /> -->
             
                 <!-- 播放速度 -->
-                <el-popover placement="top" :width="400" trigger="click">
+                <el-popover placement="top" :width="200" trigger="hover" hide-after="0">
                     <template #reference>
-                        <el-button size="large" style="border: none;" circle @click="showList" text>倍</el-button>
+                        <el-button size="large" style="border: none;" circle @click="showList" text>x{{ player.speed }}</el-button>
                     </template>
-                    <el-slider v-model="player.speed" :min="-2" :max="2" step="0.1" @input="speedHandle" size="small"/>
+                    <el-slider v-model="player.speed" :min="0" :max="2" step="0.1" @input="speedHandle" size="small"/>
                 </el-popover>
 
                 <el-button size="large" circle style="border: none;" @click="switchMute">
@@ -111,8 +111,6 @@ import ContentSearch from './ContentSearch.vue'
 import { getSong } from './request.js'
 import { play } from './utils.js'
 import { ElNotification } from 'element-plus'
-
-const speed = ref(0);
 
 // 格式化
 const musicDuration = ref('00:00');
@@ -239,6 +237,12 @@ const changeCurrentProgress = (val) => {
 const changeCurrentVolume = (val) => {
     audio.volume = val;
     player.value.tmpVolume = val;
+}
+
+// 调节播放速度
+const speedHandle = (val) => {
+    audio.playbackRate = val;
+    player.value.speed = val;
 }
 
 // 切换静音模式
