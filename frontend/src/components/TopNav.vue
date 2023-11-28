@@ -2,11 +2,11 @@
   <div style="width: 100%; height: 100%;">
     <div style="display: flex; height: 100%;">
       <div style="display: flex; flex: 1; height: 100%; align-items: center;">
-        <el-button style="margin-right: 5px; margin-left: 30px; width: 1px;" icon="ArrowLeft" />
-        <el-input v-model="input" @keyup.enter="submit" style="margin-right: 5px;width: 250px; height: 32px;"
+        <el-button style="margin-right: 5px; margin-left: 30px; width: 1px;" icon="ArrowLeft" size="large" />
+        <el-input v-model="input" @keyup.enter="submit" style="margin-right: 5px;width: 250px;" size="large"
           :placeholder="player.searchValue" prefix-icon="Search" />
         <!-- <el-button @click="submit" style="margin-right: 60px;" icon="Microphone" /> -->
-        <el-button @click="submit" style="margin-right: 60px;" :loading="player.submiting">搜索</el-button>
+        <el-button @click="submit" style="margin-right: 60px;" :loading="player.submiting" size="large">搜索</el-button>
         <!-- <el-button @click="submitDebug" style="margin-right: 60px;" :loading="submiting">debug</el-button> -->
       </div>
 
