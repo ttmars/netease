@@ -17,8 +17,10 @@
                     </el-button>
                 </div>
                 <div style="display: flex; flex-direction: column;">
-                    <div style="margin-top: 10px; margin-bottom: 10px; width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> {{ player.index != -1 && player.index <
-                        player.musicList.length ? player.musicList[player.index].name : "天天网抑云" }} </div>
+                    <div
+                        style="margin-top: 10px; margin-bottom: 10px; width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        {{ player.index != -1 && player.index < player.musicList.length ?
+                            player.musicList[player.index].name : "天天网抑云" }} </div>
                             <div style="display: flex;">
                                 <el-button circle style="border: none;" @click="changeLoveStatus">
                                     <template #icon>
@@ -64,7 +66,8 @@
                             <img src="../assets/下一曲.svg" alt="" width="13" height="13">
                         </template>
                     </el-button>
-                    <el-button circle style="border: none;" @click="player.showLyric = !player.showLyric"><b>词</b></el-button>
+                    <el-button circle style="border: none;"
+                        @click="player.showLyric = !player.showLyric"><b>词</b></el-button>
                 </div>
 
                 <!-- 下 -->
@@ -78,7 +81,15 @@
 
             <!-- 右 -->
             <div style="display: flex; flex: 1;justify-content: flex-end; align-items: center;">
-                <el-button size="large" style="border: none;" circle icon="Expand" @click="showList" />
+                <!-- <el-button size="large" style="border: none;" circle icon="Expand" @click="showList" /> -->
+            
+                <!-- 播放速度 -->
+                <el-popover placement="top" :width="400" trigger="click">
+                    <template #reference>
+                        <el-button size="large" style="border: none;" circle @click="showList" text>倍</el-button>
+                    </template>
+                    <el-slider v-model="player.speed" :min="-2" :max="2" step="0.1" @input="speedHandle" size="small"/>
+                </el-popover>
 
                 <el-button size="large" circle style="border: none;" @click="switchMute">
                     <template #icon>
@@ -101,6 +112,8 @@ import { getSong } from './request.js'
 import { play } from './utils.js'
 import { ElNotification } from 'element-plus'
 
+const speed = ref(0);
+
 // 格式化
 const musicDuration = ref('00:00');
 const currentDuration = ref('00:00');
@@ -120,7 +133,7 @@ const copyClick = () => {
         message: '已复制链接',
         type: 'success',
         showClose: false,
-        duration:1000,
+        duration: 1000,
     })
 }
 
@@ -132,7 +145,7 @@ const downloadClick = () => {
         message: '已开始下载',
         type: 'success',
         showClose: false,
-        duration:1000,
+        duration: 1000,
     })
     if (player.value.index != -1 && player.value.index < player.value.musicList.length) {
         downloadMp3(player.value.url, player.value.musicList[player.value.index].name);

@@ -44,6 +44,7 @@ export const audio = new Audio();
 
 // 播放信息
 export const player = ref({
+  "speed": 1,         // 播放速度
   "showLyric": true,   // 是否显示歌词
   "lyric": '',          // 当前歌词
   "activeTab": 'first',  // 当前标签页
