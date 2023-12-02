@@ -136,10 +136,6 @@ const commentClick = async () => {
     drawer.value = true;
     await setComment();
 }
-const items = ref([
-    { name: '总队长', message: '好可爱，就像在耳边唱一样，有点调皮，不做作，很真实，听的让我产生我好像身边有个女朋友给我唱歌的错觉。。。。为何有股悲伤的气息', time: '2014-12-06' },
-    { name: '总队长', message: '对对对，感觉像是我侧躺在女盆友的腿上，然后她在给我唱！不对！我也是女的', time: '2014-12-06' }
-])
 
 // 格式化
 const musicDuration = ref('00:00');
