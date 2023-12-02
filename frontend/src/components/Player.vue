@@ -106,7 +106,7 @@
         </div>
 
         <!-- 右侧评论抽屉 -->
-        <el-drawer v-model="drawer" title="精彩评论">
+        <el-drawer v-model="drawer" title="精彩评论" size="40%">
             <div v-for="item in player.commentList">
                 <div style="display: flex;">
                     <div style="margin-right: 10px;">
