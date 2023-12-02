@@ -68,7 +68,7 @@
                         </template>
                     </el-button>
                     <el-button circle style="border: none;"
-                        @click="player.showLyric = !player.showLyric"><b>词</b></el-button>
+                        @click="player.showLyric = !player.showLyric"><b :style="{ color: player.showLyric ? 'cadetblue' : 'black' }">词</b></el-button>
                 </div>
 
                 <!-- 下 -->
