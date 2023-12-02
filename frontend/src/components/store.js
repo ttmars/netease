@@ -50,6 +50,7 @@ export const player = ref({
   "activeTab": 'first',  // 当前标签页
   "songIndex": -1,       // 歌单索引
   "mvIndex": -1,       // mv索引
+  "commentList": [],       // 评论列表
   "songList": [],       // 歌单列表
   "musicList": [],      // 播放列表
   "mvList": [],         // MV列表

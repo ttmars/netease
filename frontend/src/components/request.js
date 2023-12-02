@@ -68,3 +68,12 @@ export const getMVLink = (params) => {
         params
     })
 }
+
+// 获取歌曲评论
+export const getComment = (params) => {
+    return service({
+        url: '/comment/music',
+        method: 'get',
+        params
+    })
+}

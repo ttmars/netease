@@ -32,7 +32,8 @@
 
                                 <el-button circle style="border: none;" icon="CopyDocument" @click="copyClick"></el-button>
                                 <el-button circle style="border: none;" icon="Download" @click="downloadClick"></el-button>
-                                <el-button circle style="border: none;" icon="MoreFilled"></el-button>
+                                <el-button circle style="border: none;" icon="ChatDotSquare"
+                                    @click="commentClick"></el-button>
                             </div>
                     </div>
                 </div>
@@ -82,13 +83,14 @@
             <!-- 右 -->
             <div style="display: flex; flex: 1;justify-content: flex-end; align-items: center;">
                 <!-- <el-button size="large" style="border: none;" circle icon="Expand" @click="showList" /> -->
-            
+
                 <!-- 播放速度 -->
                 <el-popover placement="top" :width="200" trigger="hover" :hide-after="0">
                     <template #reference>
-                        <el-button size="large" style="border: none;" circle @click="showList" text>x{{ player.speed }}</el-button>
+                        <el-button size="large" style="border: none;" circle @click="showList" text>x{{ player.speed
+                        }}</el-button>
                     </template>
-                    <el-slider v-model="player.speed" :min="0" :max="2" :step="0.1" @input="speedHandle" size="small"/>
+                    <el-slider v-model="player.speed" :min="0" :max="2" :step="0.1" @input="speedHandle" size="small" />
                 </el-popover>
 
                 <el-button size="large" circle style="border: none;" @click="switchMute">
@@ -102,6 +104,23 @@
                     :step=0.01 @input="changeCurrentVolume" />
             </div>
         </div>
+
+        <!-- 右侧评论抽屉 -->
+        <el-drawer v-model="drawer" title="精彩评论">
+            <div v-for="item in player.commentList">
+                <div style="display: flex;">
+                    <div style="margin-right: 10px;">
+                        <img :src="item.user.avatarUrl" alt="" width="50" height="50">
+                    </div>
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="font-size: 12px; margin-bottom: 5px; color:blueviolet">{{ item.user.nickname }}</div>
+                        <div style="margin-bottom: 10px;">{{ item.content }}</div>
+                        <div style="font-size: 10px;">{{ item.timeStr }}</div>
+                        <div><el-divider /></div>
+                    </div>
+                </div>
+            </div>
+        </el-drawer>
 </template>
 
 <script setup>
@@ -109,8 +128,18 @@ import { ref } from 'vue'
 import { audio, currentTab, player } from './store.js'
 import ContentSearch from './ContentSearch.vue'
 import { getSong } from './request.js'
-import { play } from './utils.js'
+import { play, setComment } from './utils.js'
 import { ElNotification } from 'element-plus'
+
+const drawer = ref(false);
+const commentClick = async () => {
+    drawer.value = true;
+    await setComment();
+}
+const items = ref([
+    { name: '总队长', message: '好可爱，就像在耳边唱一样，有点调皮，不做作，很真实，听的让我产生我好像身边有个女朋友给我唱歌的错觉。。。。为何有股悲伤的气息', time: '2014-12-06' },
+    { name: '总队长', message: '对对对，感觉像是我侧躺在女盆友的腿上，然后她在给我唱！不对！我也是女的', time: '2014-12-06' }
+])
 
 // 格式化
 const musicDuration = ref('00:00');

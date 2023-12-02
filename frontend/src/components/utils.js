@@ -1,6 +1,6 @@
 import { player, currentTab, audio } from "./store.js";
 import ContentSearch from "./ContentSearch.vue"
-import { getPicUrl, search, getPlaylist, getSong, getLyric,getMVLink } from './request.js'
+import { getPicUrl, search, getPlaylist, getSong, getLyric,getMVLink,getComment } from './request.js'
 import { ElNotification } from 'element-plus'
 
 // 设置歌词
@@ -69,6 +69,13 @@ export const setSongList = async () => {
     });
 
     currentTab.value = ContentSearch;
+}
+
+// 获取评论
+export const setComment = async () => {
+    player.value.commentList = [];
+    const resp = await getComment({ id: player.value.musicList[player.value.index].id })
+    player.value.commentList = resp.data.hotComments;
 }
 
 // MV搜索
