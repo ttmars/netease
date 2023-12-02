@@ -35,13 +35,13 @@ const playingHandle = () => {
 <style>
 .video {
     width: 290px;
-    height: 160px;
+    /* height: 160px; */
     margin: 10px;
 }
 
 .mv {
     width: 290px;
-    height: 230px;
+    /* height: 230px; */
     margin: 10px;
     display: flex;
     flex-direction: column;
