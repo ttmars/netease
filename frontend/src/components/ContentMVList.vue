@@ -35,7 +35,7 @@ const playingHandle = () => {
 <style>
 .video {
     width: 290px;
-    /* height: 160px; */
+    height: 162px;
     margin: 10px;
 }
 
