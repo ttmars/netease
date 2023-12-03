@@ -4,11 +4,9 @@ import LeftNav from './LeftNav.vue'
 import Player from './Player.vue'
 import { onMounted } from 'vue'
 import { currentTab } from './store.js'
-import ContentSearch from './ContentSearch.vue'
 import { setMusicList } from './utils'
 
 onMounted(() => {
-    currentTab.value = ContentSearch;         // 页面加载显示指定内容
     setMusicList();
 })
 
