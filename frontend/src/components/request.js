@@ -16,6 +16,14 @@ const service = axios.create({
     timeout: 10000
 })
 
+// 获取榜单
+export const getTopList = () => {
+    return service({
+        url: '/toplist',
+        method: 'get',
+    })
+}
+
 // 搜索
 export const search = (params) => {
     return service({

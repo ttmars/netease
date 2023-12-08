@@ -24,7 +24,7 @@ export const topTabs = shallowRef([
   // HomeFilled
   { buttonName: '播放列表', iconName: 'HomeFilled', cpn: CententSearch },
   { buttonName: '我的收藏', iconName: 'StarFilled', cpn: Content2 },
-  // { buttonName: '播客精选', iconName: 'Search', cpn: Content3 },
+  { buttonName: '音乐精选', iconName: 'Search', cpn: Content3 },
   // { buttonName: '私人漫游', iconName: 'Search', cpn: Content4 },
   // { buttonName: '我的社区', iconName: 'ChatDotRound', cpn: Content5 }
 ])
@@ -45,6 +45,8 @@ export const audio = new Audio();
 
 // 播放信息
 export const player = ref({
+  "topList": [],       // 榜单列表
+  "topIndex": -1,       // 榜单索引
   "loveStatus": false,  // 收藏状态
   "loveList": [],       // 收藏列表
   "speed": 1,         // 播放速度

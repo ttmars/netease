@@ -18,10 +18,9 @@
 
 <script setup>
 import { player, currentTab } from '../store.js'
-import { setLoveList } from '../utils.js'
+import { play,setLoveList } from '../utils.js'
 import { onMounted } from "vue";
 import ContentSearch from "../ContentSearch.vue"
-import { play } from '../utils';
 import { getSong } from '../request.js'
 
 onMounted(() => {

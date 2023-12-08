@@ -1,8 +1,13 @@
 import { player, currentTab, audio } from "./store.js";
 import ContentSearch from "./ContentSearch.vue"
-import { getPicUrl, search, getPlaylist, getSong, getLyric,getMVLink,getComment } from './request.js'
+import { getPicUrl, search, getPlaylist, getSong, getLyric,getMVLink,getComment,getTopList } from './request.js'
 import { ElNotification } from 'element-plus'
 import { GetAllSong,IsExist } from "../../wailsjs/go/main/Music";
+
+export const setTopList = async () => {
+    const resp = await getTopList();
+    player.value.topList = resp.data.list;
+}
 
 export const setLoveList = async () => {
     player.value.loveList= [];
@@ -129,6 +134,28 @@ function formatNumber(a) {
 export const playSonglist = async () => {
     player.value.submiting = true;
     const resp = await getPlaylist({ id: player.value.songList[player.value.songIndex].id })
+    player.value.submiting = false;
+    player.value.index = -1;
+
+    player.value.musicList = [];
+    player.value.musicList = resp.data.songs;
+
+    player.value.musicList.forEach(item => {
+        item.duration = item.dt;
+        item.album = item.al;
+        item.artists = item.ar;
+
+        const totalSeconds = Math.floor(item.duration / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        item.duration = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    });
+}
+
+// 播放一个榜单
+export const playToplist = async () => {
+    player.value.submiting = true;
+    const resp = await getPlaylist({ id: player.value.topList[player.value.topIndex].id })
     player.value.submiting = false;
     player.value.index = -1;
 

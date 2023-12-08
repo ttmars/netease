@@ -4,10 +4,11 @@ import LeftNav from './LeftNav.vue'
 import Player from './Player.vue'
 import { onMounted } from 'vue'
 import { currentTab } from './store.js'
-import { setMusicList } from './utils'
+import { setMusicList,setTopList } from './utils'
 
 onMounted(() => {
     setMusicList();
+    setTopList();
 })
 
 </script>
