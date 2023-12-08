@@ -22,7 +22,7 @@ http://netease.youthsweet.com/
 
 ## 桌面版
 
-http://netease.youthsweet.com/
+https://github.com/ttmars/netease/releases
 
 ## 源码构建
 
@@ -43,3 +43,11 @@ wails build
 ```
 
 ## 预览
+
+
+
+![netease-1](http://jyy-yyds.oss-cn-zhangjiakou.aliyuncs.com/img/netease-1.jpg)
+
+
+
+![netease-2](http://jyy-yyds.oss-cn-zhangjiakou.aliyuncs.com/img/netease-2.jpg)
