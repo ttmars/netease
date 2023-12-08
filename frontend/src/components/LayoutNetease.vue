@@ -32,9 +32,10 @@ onMounted(() => {
                     </div>
                     <div style="overflow: auto; height: 100%;">
                         <!-- 内容 -->
-                        <KeepAlive>
+                        <!-- <KeepAlive>
                             <component :is="currentTab"></component>
-                        </KeepAlive>
+                        </KeepAlive> -->
+                        <component :is="currentTab"></component>
                     </div>
                 </div>
             </div>

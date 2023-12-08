@@ -21,22 +21,23 @@ export const currentTab = shallowRef('Content1')     // 表示当前内容组件
 
 // 左侧上导航
 export const topTabs = shallowRef([
+  // HomeFilled
   { buttonName: '播放列表', iconName: 'HomeFilled', cpn: CententSearch },
-  { buttonName: '音乐精选', iconName: 'Service', cpn: Content2 },
-  { buttonName: '播客精选', iconName: 'Search', cpn: Content3 },
-  { buttonName: '私人漫游', iconName: 'Search', cpn: Content4 },
-  { buttonName: '我的社区', iconName: 'ChatDotRound', cpn: Content5 }
+  { buttonName: '我的收藏', iconName: 'StarFilled', cpn: Content2 },
+  // { buttonName: '播客精选', iconName: 'Search', cpn: Content3 },
+  // { buttonName: '私人漫游', iconName: 'Search', cpn: Content4 },
+  // { buttonName: '我的社区', iconName: 'ChatDotRound', cpn: Content5 }
 ])
 
 // 左侧下导航
 export const bottomTabs = shallowRef([
-  { buttonName: '我的音乐', iconName: 'Clock', cpn: Content6 },
-  { buttonName: '最近播放', iconName: 'Clock', cpn: Content7 },
-  { buttonName: '我的播客', iconName: 'Search', cpn: Content8 },
-  { buttonName: '我的收藏', iconName: 'StarFilled', cpn: Content9 },
-  { buttonName: '下载管理', iconName: 'Download', cpn: Content10 },
-  { buttonName: '本地音乐', iconName: 'Search', cpn: Content11 },
-  { buttonName: '我的云盘', iconName: 'UploadFilled', cpn: Content12 }
+  // { buttonName: '我的音乐', iconName: 'Clock', cpn: Content6 },
+  // { buttonName: '最近播放', iconName: 'Clock', cpn: Content7 },
+  // { buttonName: '我的播客', iconName: 'Search', cpn: Content8 },
+  // { buttonName: '我的收藏', iconName: 'StarFilled', cpn: Content9 },
+  // { buttonName: '下载管理', iconName: 'Download', cpn: Content10 },
+  // { buttonName: '本地音乐', iconName: 'Search', cpn: Content11 },
+  // { buttonName: '我的云盘', iconName: 'UploadFilled', cpn: Content12 }
 ])
 
 // 音频对象
@@ -44,6 +45,8 @@ export const audio = new Audio();
 
 // 播放信息
 export const player = ref({
+  "loveStatus": false,  // 收藏状态
+  "loveList": [],       // 收藏列表
   "speed": 1,         // 播放速度
   "showLyric": true,   // 是否显示歌词
   "lyric": '',          // 当前歌词

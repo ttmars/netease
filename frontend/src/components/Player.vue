@@ -24,7 +24,7 @@
                             <div style="display: flex;">
                                 <el-button circle style="border: none;" @click="changeLoveStatus">
                                     <template #icon>
-                                        <img v-if="loveStatus" src="../assets/红心.svg" alt="" width="13" height="13">
+                                        <img v-if="player.loveStatus" src="../assets/红心.svg" alt="" width="13" height="13">
                                         <img v-else src="../assets/黑心.svg" alt="" width="13" height="13">
                                     </template>
                                 </el-button>
@@ -128,8 +128,9 @@ import { ref } from 'vue'
 import { audio, currentTab, player } from './store.js'
 import ContentSearch from './ContentSearch.vue'
 import { getSong } from './request.js'
-import { play, setComment } from './utils.js'
+import { play, setComment, setLoveList } from './utils.js'
 import { ElNotification } from 'element-plus'
+import { AddSong,DelSong } from "../../wailsjs/go/main/Music";
 
 const drawer = ref(false);
 const commentClick = async () => {
@@ -142,10 +143,15 @@ const musicDuration = ref('00:00');
 const currentDuration = ref('00:00');
 const musicDurationNumber = ref(0);
 const currentDurationNumber = ref(0);
-const loveStatus = ref(false);
 
-const changeLoveStatus = () => {
-    loveStatus.value = !loveStatus.value;
+const changeLoveStatus = async () => {
+    player.value.loveStatus = !player.value.loveStatus;
+    if (player.value.loveStatus) {
+        AddSong({"id":player.value.musicList[player.value.index].id.toString(), "SongName":player.value.musicList[player.value.index].name, "SingerName":player.value.musicList[player.value.index].artists[0].name});
+    }else{
+        DelSong(player.value.musicList[player.value.index].id.toString());
+    }
+    await setLoveList();
 }
 
 // 复制播放链接

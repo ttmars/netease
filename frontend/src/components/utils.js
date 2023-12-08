@@ -2,6 +2,21 @@ import { player, currentTab, audio } from "./store.js";
 import ContentSearch from "./ContentSearch.vue"
 import { getPicUrl, search, getPlaylist, getSong, getLyric,getMVLink,getComment } from './request.js'
 import { ElNotification } from 'element-plus'
+import { GetAllSong,IsExist } from "../../wailsjs/go/main/Music";
+
+export const setLoveList = async () => {
+    player.value.loveList= [];
+    GetAllSong().then((result) => {
+        player.value.loveList = result;
+    });
+}
+
+export const setLoveStatus = async () => {
+    IsExist(player.value.musicList[player.value.index].id.toString()).then((result) => {
+        player.value.loveStatus = result;
+        console.log(player.value.loveStatus);
+    });
+}
 
 // 设置歌词
 export const setLyric = async () => {
@@ -158,5 +173,7 @@ export async function play() {
         setPicUrl();
         setLyric();
         audio.playbackRate = player.value.speed;
+        // 设置收藏状态
+        setLoveStatus();
     }
 }

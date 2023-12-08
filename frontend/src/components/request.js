@@ -10,6 +10,7 @@ import axios from 'axios';
 axios.defaults.crossDomain = true
 
 const service = axios.create({
+    // baseURL: 'http://39.101.203.25:4000',
     // baseURL: 'http://39.101.203.25:3000',
     baseURL: 'https://api-007.alin.top',
     timeout: 10000

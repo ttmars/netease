@@ -12,8 +12,14 @@ import (
 var assets embed.FS
 
 func main() {
+	InitDB()
+	run()
+}
+
+func run() {
 	// Create an instance of the app structure
 	app := NewApp()
+	music := NewMusic()
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -29,6 +35,7 @@ func main() {
 		OnStartup: app.startup,
 		Bind: []interface{}{
 			app,
+			music,
 		},
 	})
 
