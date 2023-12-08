@@ -24,7 +24,7 @@ export const topTabs = shallowRef([
   // HomeFilled
   { buttonName: '播放列表', iconName: 'HomeFilled', cpn: CententSearch },
   { buttonName: '我的收藏', iconName: 'StarFilled', cpn: Content2 },
-  { buttonName: '音乐精选', iconName: 'Search', cpn: Content3 },
+  { buttonName: '音乐精选', iconName: 'Sunny', cpn: Content3 },
   // { buttonName: '私人漫游', iconName: 'Search', cpn: Content4 },
   // { buttonName: '我的社区', iconName: 'ChatDotRound', cpn: Content5 }
 ])

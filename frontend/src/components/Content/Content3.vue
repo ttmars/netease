@@ -4,7 +4,8 @@
             <div style="display: flex; flex-wrap: wrap;">
                 <div v-for="(item, idx) in player.topList">
                     <div class="cell">
-                        <img class="img" style="cursor: pointer;" loading="lazy" :src="item.coverImgUrl" @click="playTop(idx)">
+                        <img class="img" style="cursor: pointer;" loading="lazy" :src="item.coverImgUrl"
+                            @click="playTop(idx)">
                     </div>
                 </div>
             </div>
@@ -20,17 +21,16 @@ import { getSong } from '../request';
 import ContentSearch from "../ContentSearch.vue"
 
 const playTop = async (idx) => {
-
     player.value.musicList = [];
     player.value.activeTab = 'first';
     player.value.searchType = '0';
 
+    // 切换到播放列表
+    currentTab.value = ContentSearch;
+
     // 获取歌单
     player.value.topIndex = idx;
     await playToplist();
-
-    // 切换到播放列表
-    currentTab.value = ContentSearch;
 
     // 自动播放第一曲
     const resp = await getSong({ id: player.value.musicList[0].id })
