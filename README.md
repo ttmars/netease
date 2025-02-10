@@ -18,7 +18,7 @@
 
 ## 在线体验
 
-http://netease.youthsweet.com/
+http://39.101.203.25:8888/
 
 ## 桌面版
 

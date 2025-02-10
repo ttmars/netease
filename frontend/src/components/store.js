@@ -66,7 +66,7 @@ export const player = ref({
   "submiting": false,   // 搜索状态
   "mode": 1,            // 播放模式 1列表循环 2随机播放 3单曲循环
   "searchType": '0',    // 搜索模式 0歌曲 1歌单 2歌词 3MV
-  "searchValue": '永远同在',     // 上次的搜索值
+  "searchValue": '孙露',     // 上次的搜索值
   "picUrl": '',         // 歌曲图片
   "isMute": false,      // 是否静音
   "currentVolume": 1,   // 当前音量
