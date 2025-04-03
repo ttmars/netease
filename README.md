@@ -28,15 +28,17 @@ https://github.com/ttmars/netease/releases
 
 安装环境
 
-- nodejs、npm
+- Node-v17.9.1(https://nodejs.org/download/release/v17.9.1/)
 - golang
 - wails
 
 构建打包
 
 ```shell
-# 安装前端依赖 
-npm install
+# 前端构建 
+cd frontend/
+npm install --force
+npm run build
 
 # wails打包
 wails build
